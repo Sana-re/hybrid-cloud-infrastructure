@@ -1,0 +1,49 @@
+# Architecture Diagram Descriptions (Image-Free)
+
+This project uses several architecture diagrams which cannot be uploaded due to GitHub image upload restrictions.  
+This document explains each diagram so reviewers can understand the system design.
+
+---
+
+## 1. Hybrid Cloud System Architecture
+- Proxmox VE running on local hardware  
+- Oracle Cloud Infrastructure (OCI) public instance  
+- Private internal network for lab workloads  
+- Public-facing web server hosted in OCI  
+- Routing between environments  
+- Backup and replication paths
+
+---
+
+## 2. Proxmox Network Topology
+- `vmbr0` → External NAT bridge for internet access  
+- `vmbr1` → Internal /24 subnet for VMs  
+- Firewall segmentation rules  
+- Linux + Windows VM placement  
+- Static IP layout and DHCP strategy
+
+---
+
+## 3. Security Governance Model
+- Authentication + least privilege access  
+- SSH key-based access  
+- OCI security lists  
+- Proxmox firewall policies  
+- Isolated internal workloads
+
+---
+
+## 4. Backup & Continuity Workflow
+- Proxmox snapshots before updates  
+- OCI automated backups  
+- Manual recovery workflows  
+- Rollback strategy using LXC containers and Proxmox snapshots
+
+---
+
+## 5. Ansible Automation Flow
+- Inventory definition  
+- Playbook execution  
+- Linux + Windows patching  
+- Automated deployments (nginx, K3s)  
+- Post-verification logs
